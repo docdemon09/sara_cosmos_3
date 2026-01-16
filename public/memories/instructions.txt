@@ -1,0 +1,16 @@
+HOW TO ADD YOUR OWN PHOTOS:
+
+1.  Paste your images into this folder (`public/memories`).
+2.  Rename them to match the planet names (case insensitive):
+    - mercury.jpg (or mercury.png)
+    - venus.jpg   (or venus.png)
+    - earth.jpg   ...
+    - mars.jpg
+    - jupiter.jpg
+    - saturn.jpg
+    - uranus.jpg
+    - neptune.jpg
+
+Supported formats: .jpg, .png.
+
+If a photo is missing or named incorrectly, the app will show a random "memory" instead.

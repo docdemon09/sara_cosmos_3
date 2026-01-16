@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Outfit:wght@300;500;700&display=swap');
+
+body,
+html,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Torn Paper Effect */
+.torn-paper {
+  /* Using a clip-path generator approximation for torn edges */
+  /* This is a simple jagged edge example */
+  clip-path: polygon(0% 10px, 5% 0px, 10% 12px, 15% 0px, 20% 10px, 25% 0px, 30% 12px, 35% 0px,
+      40% 10px, 45% 0px, 50% 12px, 55% 0px, 60% 10px, 65% 0px, 70% 12px, 75% 0px,
+      80% 10px, 85% 0px, 90% 12px, 95% 0px, 100% 10px,
+      100% calc(100% - 10px), 95% 100%, 90% calc(100% - 12px), 85% 100%, 80% calc(100% - 10px),
+      75% 100%, 70% calc(100% - 12px), 65% 100%, 60% calc(100% - 10px), 55% 100%,
+      50% calc(100% - 12px), 45% 100%, 40% calc(100% - 10px), 35% 100%, 30% calc(100% - 12px),
+      25% 100%, 20% calc(100% - 10px), 15% 100%, 10% calc(100% - 12px), 5% 100%, 0% calc(100% - 10px));
+}
+
+/* Falling Flowers Keyframes */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Polaroid Styles */
+.polaroid-container {
+  background: white;
+  padding: 10px 10px 40px 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  transform: rotate(-5deg);
+  text-align: center;
+  width: 250px;
+  opacity: 0;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(-5deg);
+    opacity: 1;
+  }
+}
+
+.polaroid-photo {
+  width: 100%;
+  height: 200px;
+  background: #000;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.polaroid-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  font-family: 'Indie Flower', cursive;
+  color: #333;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Floating Pen Animation */
+.floating-pen {
+  display: inline-block;
+  /* Pen move animation is handled by JS layout updates, or simple float here */
+  animation: floatPen 3s ease-in-out infinite;
+}
+
+@keyframes floatPen {
+
+  0%,
+  100% {
+    transform: rotate(-135deg) translateY(-10px);
+  }
+
+  50% {
+    transform: rotate(-135deg) translateY(-15px);
+  }
+}
+
+/* Cosmic Intro Styles */
+.cosmic-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Background Animation */
+.stars,
+.twinkling,
+.nebula {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: #000;
+  background-image:
+    radial-gradient(1px 1px at 10% 10%, white, transparent),
+    radial-gradient(1px 1px at 20% 20%, white, transparent),
+    radial-gradient(2px 2px at 30% 30%, white, transparent),
+    radial-gradient(1px 1px at 40% 40%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(2px 2px at 60% 60%, white, transparent),
+    radial-gradient(1px 1px at 70% 70%, white, transparent),
+    radial-gradient(2px 2px at 80% 80%, white, transparent),
+    radial-gradient(1px 1px at 90% 90%, white, transparent);
+  background-size: 500px 500px;
+  z-index: 0;
+}
+
+.twinkling {
+  background: transparent;
+  background-image:
+    radial-gradient(2px 2px at 15% 15%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 45% 45%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 75% 75%, rgba(255, 255, 255, 0.8), transparent);
+  background-size: 300px 300px;
+  z-index: 1;
+  animation: move-twink-back 100s linear infinite;
+  opacity: 0.7;
+}
+
+.nebula {
+  background: transparent;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(130, 29, 237, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(29, 178, 237, 0.3) 0%, transparent 40%);
+  z-index: 2;
+}
+
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 500px 500px;
+  }
+}
+
+/* Content */
+.content-wrapper {
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-card {
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 30px rgba(140, 0, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  max-width: 90%;
+}
+
+/* Typography */
+.glow-text {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 221, 0.6);
+  margin: 0;
+}
+
+.title-large {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.cosmic-text {
+  background: linear-gradient(to right, #acb6e5, #86fde8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 2rem;
+}
+
+.subtitle-small {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Buttons */
+.cosmic-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50px;
+  padding: 15px 40px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(118, 75, 162, 0.5);
+  font-family: 'Outfit', sans-serif;
+}
+
+.cosmic-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(118, 75, 162, 0.8);
+}
+
+.pulse-button-wrapper,
+.planet-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+}
+
+.rocket-icon,
+.planet-icon {
+  font-size: 3rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+/* Terminal */
+.terminal-wrapper {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #0f0;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  max-width: 600px;
+  text-align: left;
+}
+
+.terminal-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.5rem;
+  color: #0f0;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  margin: 0;
+  text-shadow: 0 0 5px #0f0;
+}
+
+.blinking-cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
